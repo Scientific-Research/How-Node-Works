@@ -37,7 +37,13 @@ myEmitter.emit("newSale", 9);
 const server = http.createServer();
 
 // firstly, we define the server and we have now two Observers => Listeners which are
-// listening to our server
+// listening to our server, actually we don't have emit here, we have only listener here=>
+// server.on() and when we refresh the web => it send a request to the server and server.on()
+// is always observing or listening and as soon as receive a request, send an response, it means
+// res.end() send a response to the browser and at the end, we see our message on the browser!
+// but when we define our event like above example, we have to define the .emit ourselves and
+// when we use the predefined event in NODE like what we used in below example, we don't need
+// to define any .emit anymore and we have to use only .on .
 server.on("request", (req, res) => {
   res.end("First Request received!");
   console.log("First Request received");
