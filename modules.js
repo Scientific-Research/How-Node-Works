@@ -21,6 +21,6 @@ const { divide } = calc2; // destructuring works well too in this way
 console.log(divide(2, 3));
 
 // caching
-require("./test-module-3")();
+require("./test-module-3")(); // () is call the function right the way without saving it to the variable
 require("./test-module-3")();
 require("./test-module-3")();
