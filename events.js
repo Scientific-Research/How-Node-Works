@@ -1,4 +1,5 @@
 const EventEmitter = require("events");
+const http = require("http");
 
 // in a real eaxmple, we need to use a class to make an instance from this class!
 class Sales extends EventEmitter {
@@ -30,3 +31,30 @@ myEmitter.on("newSale", (stock) => {
 
 // we want to make a new emit: this is the emitter and send the nre emits
 myEmitter.emit("newSale", 9);
+
+/////////////////////////// HTTP SECTION - Creating a small Web Server//////////////////
+
+const server = http.createServer();
+
+// firstly, we define the server and we have now two Observers => Listeners which are
+// listening to our server
+server.on("request", (req, res) => {
+  res.end("Request received!");
+  console.log("First Request received");
+});
+
+server.on("request", (req, res) => {
+  //res.end("Second request received!"); // we are allowed to send only one header=>res.end()
+  // at the same time! that's why this must be here outcommented!
+  console.log("Second request received");
+});
+
+server.on("close", () => {
+  console.log("server closed!");
+});
+
+// to start the server:
+PORT = 8000;
+server.listen(PORT, "127.0.0.1", () => {
+  console.log(`Server is listening on PORT ${PORT}`);
+});
