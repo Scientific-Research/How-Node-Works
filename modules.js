@@ -19,3 +19,8 @@ const calc2 = require("./test-module-2"); // with this kind of exports, we can a
 const { divide } = calc2; // destructuring works well too in this way
 
 console.log(divide(2, 3));
+
+// caching
+require("./test-module-3")();
+require("./test-module-3")();
+require("./test-module-3")();
