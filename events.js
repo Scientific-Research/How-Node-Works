@@ -1,6 +1,14 @@
 const EventEmitter = require("events");
 
-const myEmitter = new EventEmitter();
+// in a real eaxmple, we need to use a class to make an instance from this class!
+class Sales extends EventEmitter {
+  constructor() {
+    super(); // with this, we can get access to all of the methods of parent => EventEmitter
+  }
+}
+
+// const myEmitter = new EventEmitter();
+const myEmitter = new Sales();
 
 // these are two observers and they observe(listen) the emitter and as soon as emitter send a
 // new emit => newSale, they will display it in console.log()
