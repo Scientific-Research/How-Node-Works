@@ -2,7 +2,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 
 const start = Date.now(); // current date in milisecond!
-process.env.UV_THREADPOOL_SIZE = 1; // to reduce the number of threads from four to one!
+process.env.UV_THREADPOOL_SIZE = 4; // to reduce the number of threads from four to one!
 
 setTimeout(() => console.log("Timer 1 finished!"), 0);
 setImmediate(() => console.log("Immediate 1 finished!"));
@@ -18,21 +18,35 @@ fs.readFile("test-file.txt", () => {
 
   process.nextTick(() => console.log("Process.nextTick"));
 
-  crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-    console.log(Date.now() - start, "Password encrypted!");
-  });
+  // we test now, the Async version --> without call back furnction
+  // it will block runnning the process and when every crypto is finished, it goes to the next one!
+  crypto.pbkdf2Sync("password", "salt", 100000, 1024, "sha512");
+  console.log(Date.now() - start, "Password encrypted!");
 
-  crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-    console.log(Date.now() - start, "Password encrypted!");
-  });
+  crypto.pbkdf2Sync("password", "salt", 100000, 1024, "sha512");
+  console.log(Date.now() - start, "Password encrypted!");
 
-  crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-    console.log(Date.now() - start, "Password encrypted!");
-  });
+  crypto.pbkdf2Sync("password", "salt", 100000, 1024, "sha512");
+  console.log(Date.now() - start, "Password encrypted!");
 
-  crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-    console.log(Date.now() - start, "Password encrypted!");
-  });
+  crypto.pbkdf2Sync("password", "salt", 100000, 1024, "sha512");
+  console.log(Date.now() - start, "Password encrypted!");
+
+  // crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
+  //   console.log(Date.now() - start, "Password encrypted!");
+  // });
+
+  // crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
+  //   console.log(Date.now() - start, "Password encrypted!");
+  // });
+
+  // crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
+  //   console.log(Date.now() - start, "Password encrypted!");
+  // });
+
+  // crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
+  //   console.log(Date.now() - start, "Password encrypted!");
+  // });
 });
 
 console.log(
