@@ -1,0 +1,12 @@
+{
+  "name": "how-node-works",
+  "version": "1.0.0",
+  "description": "",
+  "main": "event-loop.js",
+  "scripts": {
+    "start": "nodemon events.js"
+  },
+  "keywords": [],
+  "author": "Maximilian",
+  "license": "ISC"
+}

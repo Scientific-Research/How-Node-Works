@@ -39,12 +39,12 @@ const server = http.createServer();
 // firstly, we define the server and we have now two Observers => Listeners which are
 // listening to our server
 server.on("request", (req, res) => {
-  res.end("Request received!");
+  res.end("First Request received!");
   console.log("First Request received");
 });
 
 server.on("request", (req, res) => {
-  //res.end("Second request received!"); // we are allowed to send only one header=>res.end()
+  //   res.end("Second request received!"); // we are allowed to send only one header=>res.end()
   // at the same time! that's why this must be here outcommented!
   console.log("Second request received");
 });
