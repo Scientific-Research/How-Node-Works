@@ -4,7 +4,7 @@
   "description": "",
   "main": "event-loop.js",
   "scripts": {
-    "start": "nodemon events.js"
+    "start": "nodemon stream.js"
   },
   "keywords": [],
   "author": "Maximilian",
