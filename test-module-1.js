@@ -10,4 +10,4 @@ class Calculator {
   }
 }
 
-module.exports = Calculator;
+module.exports = Calculator; // we export our class and in modules.js will import it!
