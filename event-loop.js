@@ -2,6 +2,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 
 const start = Date.now(); // current date in milisecond!
+process.env.UV_THREADPOOL_SIZE = 1; // to reduce the number of threads from four to one!
 
 setTimeout(() => console.log("Timer 1 finished!"), 0);
 setImmediate(() => console.log("Immediate 1 finished!"));
