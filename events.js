@@ -14,5 +14,11 @@ myEmitter.on("newSale", () => {
 myEmitter.on("newSale", () => {
   console.log("Customer name: Maximilian");
 });
+
+// a new observer => listener with argument!
+myEmitter.on("newSale", (stock) => {
+  console.log(`There are still ${stock} items left in stock!`);
+});
+
 // we want to make a new emit: this is the emitter and send the nre emits
-myEmitter.emit("newSale");
+myEmitter.emit("newSale", 9);
