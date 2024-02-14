@@ -6,11 +6,33 @@ const server = http.createServer();
 
 server.on("request", (req, res) => {
   // Solution 1
-  fs.readFile("test-file.txt", (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    res.end(data);
+  //   fs.readFile("test-file.txt", (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //     res.end(data);
+  //   });
+
+  // Solution 2: Stream
+  const readable = fs.createReadStream("test-file.txt"); // we read the data and as soon as it
+  // 's ready, we send it to the client=>res.write(chunk). readable.on() is observer or listener
+  // which listens to the createReadStream() and when a piece of the data is ready, it will
+  // get it and send it to the output!
+  // but in Solution 1, we have to wait till all the data is ready, once it is ready, it will
+  // sen dit to the output => res.end(data)
+  readable.on("data", (chunk) => {
+    res.write(chunk);
+  });
+
+  // we have to handle the event too, when all the data is there and streaming is finished!
+  readable.on("end", () => {
+    res.end(); // no more data will be write to this writable string!
+    // we don't send any data in res.end() unlike Solution 1.
+  });
+  readable.on("error", (err) => {
+    console.log(err);
+    res.statusCode = 500;
+    res.end("File not found");
   });
 });
 
