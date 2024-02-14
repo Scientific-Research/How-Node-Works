@@ -35,6 +35,8 @@ server.on("request", (req, res) => {
   // Solution 3 // the writing the data on Browser is not as fast as reading it from the source
   // we have to use here pipe operator: => pipe make the data transfer very direct and the speed
   // of both side stay in a very high speed!
+  // using the third Solution: piping the readableStreamData as input to the res as output
+  // directly without loss the data transfer speed!
   const readable = fs.createReadStream("test-file.txt");
   readable.pipe(res);
   // readableStreamSource.pipe(writableDestination)
