@@ -13,4 +13,6 @@ const calc2 = require("./test-module-2"); // with this kind of exports, we can a
 // function directly and we don't have a class anymore => we don't need to create a new instance
 // of that class!
 
-console.log(calc2.divide(2, 3));
+const { add, multiply, divide } = calc2; // destructuring works well too in this way
+
+console.log(divide(2, 3));
